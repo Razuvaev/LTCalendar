@@ -10,9 +10,24 @@
 		E627C6901C44CD000001D2B0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E627C68F1C44CD000001D2B0 /* main.m */; };
 		E627C6931C44CD000001D2B0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E627C6921C44CD000001D2B0 /* AppDelegate.m */; };
 		E627C6961C44CD000001D2B0 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E627C6951C44CD000001D2B0 /* ViewController.m */; };
-		E627C6991C44CD000001D2B0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E627C6971C44CD000001D2B0 /* Main.storyboard */; };
 		E627C69B1C44CD000001D2B0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E627C69A1C44CD000001D2B0 /* Assets.xcassets */; };
-		E627C69E1C44CD000001D2B0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E627C69C1C44CD000001D2B0 /* LaunchScreen.storyboard */; };
+		E627C6A71C44DF850001D2B0 /* CalendarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E627C6A61C44DF850001D2B0 /* CalendarCell.m */; };
+		E627C6AA1C44F68C0001D2B0 /* CalendarCollectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = E627C6A91C44F68C0001D2B0 /* CalendarCollectionHeaderView.m */; };
+		E627C6B01C464FEE0001D2B0 /* LTCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = E627C6AF1C464FEE0001D2B0 /* LTCalendarView.m */; };
+		E627C6B81C46720B0001D2B0 /* LTTrainingPlanView.m in Sources */ = {isa = PBXBuildFile; fileRef = E627C6B71C46720B0001D2B0 /* LTTrainingPlanView.m */; };
+		E627C6BC1C4674130001D2B0 /* AllTrainingPlanCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E627C6BB1C4674130001D2B0 /* AllTrainingPlanCollectionViewCell.m */; };
+		E62BC7BD1C48DFB10044ED9D /* TotalTrainingPlanCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E62BC7BC1C48DFB10044ED9D /* TotalTrainingPlanCollectionViewCell.m */; };
+		E62BC7C01C48DFC10044ED9D /* SportTypeTrainingPlanCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E62BC7BF1C48DFC10044ED9D /* SportTypeTrainingPlanCollectionViewCell.m */; };
+		E62BC7C51C4CEFE20044ED9D /* splash_iphone4.png in Resources */ = {isa = PBXBuildFile; fileRef = E62BC7C11C4CEFE10044ED9D /* splash_iphone4.png */; };
+		E62BC7C61C4CEFE20044ED9D /* splash_iphone5.png in Resources */ = {isa = PBXBuildFile; fileRef = E62BC7C21C4CEFE10044ED9D /* splash_iphone5.png */; };
+		E62BC7C71C4CEFE20044ED9D /* splash_iphone6.png in Resources */ = {isa = PBXBuildFile; fileRef = E62BC7C31C4CEFE10044ED9D /* splash_iphone6.png */; };
+		E62BC7C81C4CEFE20044ED9D /* splash_iphone6+.png in Resources */ = {isa = PBXBuildFile; fileRef = E62BC7C41C4CEFE10044ED9D /* splash_iphone6+.png */; };
+		E6873BAF1C477D2F0072DC68 /* LTDateHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = E6873BAE1C477D2F0072DC68 /* LTDateHeaderView.m */; };
+		E6873BB61C47A13F0072DC68 /* TrainingPlanCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = E6873BB51C47A13F0072DC68 /* TrainingPlanCollectionViewLayout.m */; };
+		E6873BB91C47B1580072DC68 /* TrainingPlanTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E6873BB81C47B1580072DC68 /* TrainingPlanTableViewCell.m */; };
+		E6873BC01C47B8980072DC68 /* TrainingPlanTableViewHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = E6873BBF1C47B8980072DC68 /* TrainingPlanTableViewHeader.m */; };
+		E6873BC31C47CB220072DC68 /* TrainingPlanFooterTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E6873BC21C47CB220072DC68 /* TrainingPlanFooterTableViewCell.m */; };
+		E6873BC71C47D0CC0072DC68 /* TrainingPlanTotalFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = E6873BC61C47D0CC0072DC68 /* TrainingPlanTotalFooterView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,10 +37,38 @@
 		E627C6921C44CD000001D2B0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		E627C6941C44CD000001D2B0 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		E627C6951C44CD000001D2B0 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		E627C6981C44CD000001D2B0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E627C69A1C44CD000001D2B0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		E627C69D1C44CD000001D2B0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E627C69F1C44CD000001D2B0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E627C6A51C44DF850001D2B0 /* CalendarCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarCell.h; sourceTree = "<group>"; };
+		E627C6A61C44DF850001D2B0 /* CalendarCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarCell.m; sourceTree = "<group>"; };
+		E627C6A81C44F68C0001D2B0 /* CalendarCollectionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarCollectionHeaderView.h; sourceTree = "<group>"; };
+		E627C6A91C44F68C0001D2B0 /* CalendarCollectionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarCollectionHeaderView.m; sourceTree = "<group>"; };
+		E627C6AE1C464FEE0001D2B0 /* LTCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTCalendarView.h; sourceTree = "<group>"; };
+		E627C6AF1C464FEE0001D2B0 /* LTCalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTCalendarView.m; sourceTree = "<group>"; };
+		E627C6B61C46720B0001D2B0 /* LTTrainingPlanView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTTrainingPlanView.h; sourceTree = "<group>"; };
+		E627C6B71C46720B0001D2B0 /* LTTrainingPlanView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTTrainingPlanView.m; sourceTree = "<group>"; };
+		E627C6BA1C4674130001D2B0 /* AllTrainingPlanCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllTrainingPlanCollectionViewCell.h; sourceTree = "<group>"; };
+		E627C6BB1C4674130001D2B0 /* AllTrainingPlanCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllTrainingPlanCollectionViewCell.m; sourceTree = "<group>"; };
+		E62BC7BB1C48DFB10044ED9D /* TotalTrainingPlanCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TotalTrainingPlanCollectionViewCell.h; sourceTree = "<group>"; };
+		E62BC7BC1C48DFB10044ED9D /* TotalTrainingPlanCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TotalTrainingPlanCollectionViewCell.m; sourceTree = "<group>"; };
+		E62BC7BE1C48DFC10044ED9D /* SportTypeTrainingPlanCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SportTypeTrainingPlanCollectionViewCell.h; sourceTree = "<group>"; };
+		E62BC7BF1C48DFC10044ED9D /* SportTypeTrainingPlanCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SportTypeTrainingPlanCollectionViewCell.m; sourceTree = "<group>"; };
+		E62BC7C11C4CEFE10044ED9D /* splash_iphone4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash_iphone4.png; sourceTree = "<group>"; };
+		E62BC7C21C4CEFE10044ED9D /* splash_iphone5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash_iphone5.png; sourceTree = "<group>"; };
+		E62BC7C31C4CEFE10044ED9D /* splash_iphone6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash_iphone6.png; sourceTree = "<group>"; };
+		E62BC7C41C4CEFE10044ED9D /* splash_iphone6+.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "splash_iphone6+.png"; sourceTree = "<group>"; };
+		E6873BAD1C477D2F0072DC68 /* LTDateHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTDateHeaderView.h; sourceTree = "<group>"; };
+		E6873BAE1C477D2F0072DC68 /* LTDateHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTDateHeaderView.m; sourceTree = "<group>"; };
+		E6873BB41C47A13F0072DC68 /* TrainingPlanCollectionViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrainingPlanCollectionViewLayout.h; sourceTree = "<group>"; };
+		E6873BB51C47A13F0072DC68 /* TrainingPlanCollectionViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrainingPlanCollectionViewLayout.m; sourceTree = "<group>"; };
+		E6873BB71C47B1580072DC68 /* TrainingPlanTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrainingPlanTableViewCell.h; sourceTree = "<group>"; };
+		E6873BB81C47B1580072DC68 /* TrainingPlanTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrainingPlanTableViewCell.m; sourceTree = "<group>"; };
+		E6873BBE1C47B8980072DC68 /* TrainingPlanTableViewHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrainingPlanTableViewHeader.h; sourceTree = "<group>"; };
+		E6873BBF1C47B8980072DC68 /* TrainingPlanTableViewHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrainingPlanTableViewHeader.m; sourceTree = "<group>"; };
+		E6873BC11C47CB220072DC68 /* TrainingPlanFooterTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrainingPlanFooterTableViewCell.h; sourceTree = "<group>"; };
+		E6873BC21C47CB220072DC68 /* TrainingPlanFooterTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrainingPlanFooterTableViewCell.m; sourceTree = "<group>"; };
+		E6873BC51C47D0CC0072DC68 /* TrainingPlanTotalFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrainingPlanTotalFooterView.h; sourceTree = "<group>"; };
+		E6873BC61C47D0CC0072DC68 /* TrainingPlanTotalFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrainingPlanTotalFooterView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,14 +101,17 @@
 		E627C68D1C44CD000001D2B0 /* LTCalendar */ = {
 			isa = PBXGroup;
 			children = (
+				E62BC7C11C4CEFE10044ED9D /* splash_iphone4.png */,
+				E62BC7C21C4CEFE10044ED9D /* splash_iphone5.png */,
+				E62BC7C31C4CEFE10044ED9D /* splash_iphone6.png */,
+				E62BC7C41C4CEFE10044ED9D /* splash_iphone6+.png */,
+				E627C6B41C46700F0001D2B0 /* LTTrainingPlan */,
+				E627C6B11C4651590001D2B0 /* LTCalendarView */,
 				E627C6911C44CD000001D2B0 /* AppDelegate.h */,
 				E627C6921C44CD000001D2B0 /* AppDelegate.m */,
 				E627C6941C44CD000001D2B0 /* ViewController.h */,
 				E627C6951C44CD000001D2B0 /* ViewController.m */,
-				E627C6971C44CD000001D2B0 /* Main.storyboard */,
 				E627C69A1C44CD000001D2B0 /* Assets.xcassets */,
-				E627C69C1C44CD000001D2B0 /* LaunchScreen.storyboard */,
-				E627C69F1C44CD000001D2B0 /* Info.plist */,
 				E627C68E1C44CD000001D2B0 /* Supporting Files */,
 			);
 			path = LTCalendar;
@@ -74,9 +120,146 @@
 		E627C68E1C44CD000001D2B0 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E627C69F1C44CD000001D2B0 /* Info.plist */,
 				E627C68F1C44CD000001D2B0 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E627C6B11C4651590001D2B0 /* LTCalendarView */ = {
+			isa = PBXGroup;
+			children = (
+				E627C6B21C46516A0001D2B0 /* Cell */,
+				E627C6B31C4651700001D2B0 /* Header */,
+				E627C6AE1C464FEE0001D2B0 /* LTCalendarView.h */,
+				E627C6AF1C464FEE0001D2B0 /* LTCalendarView.m */,
+			);
+			name = LTCalendarView;
+			sourceTree = "<group>";
+		};
+		E627C6B21C46516A0001D2B0 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				E627C6A51C44DF850001D2B0 /* CalendarCell.h */,
+				E627C6A61C44DF850001D2B0 /* CalendarCell.m */,
+			);
+			name = Cell;
+			sourceTree = "<group>";
+		};
+		E627C6B31C4651700001D2B0 /* Header */ = {
+			isa = PBXGroup;
+			children = (
+				E627C6A81C44F68C0001D2B0 /* CalendarCollectionHeaderView.h */,
+				E627C6A91C44F68C0001D2B0 /* CalendarCollectionHeaderView.m */,
+			);
+			name = Header;
+			sourceTree = "<group>";
+		};
+		E627C6B41C46700F0001D2B0 /* LTTrainingPlan */ = {
+			isa = PBXGroup;
+			children = (
+				E6873BBD1C47B8620072DC68 /* TrainingPlanTableViewFooterCell */,
+				E6873BBC1C47B8590072DC68 /* TrainingPlanTableViewHeader */,
+				E6873BBA1C47B8060072DC68 /* TraininPlanTableViewCell */,
+			);
+			name = LTTrainingPlan;
+			sourceTree = "<group>";
+		};
+		E627C6B91C4673FB0001D2B0 /* CollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				E627C6BA1C4674130001D2B0 /* AllTrainingPlanCollectionViewCell.h */,
+				E627C6BB1C4674130001D2B0 /* AllTrainingPlanCollectionViewCell.m */,
+			);
+			name = CollectionViewCell;
+			sourceTree = "<group>";
+		};
+		E62BC7B81C48DF780044ED9D /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				E62BC7BA1C48DF8D0044ED9D /* SportTypeCell */,
+				E62BC7B91C48DF860044ED9D /* TotalCell */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
+		E62BC7B91C48DF860044ED9D /* TotalCell */ = {
+			isa = PBXGroup;
+			children = (
+				E62BC7BB1C48DFB10044ED9D /* TotalTrainingPlanCollectionViewCell.h */,
+				E62BC7BC1C48DFB10044ED9D /* TotalTrainingPlanCollectionViewCell.m */,
+			);
+			name = TotalCell;
+			sourceTree = "<group>";
+		};
+		E62BC7BA1C48DF8D0044ED9D /* SportTypeCell */ = {
+			isa = PBXGroup;
+			children = (
+				E62BC7BE1C48DFC10044ED9D /* SportTypeTrainingPlanCollectionViewCell.h */,
+				E62BC7BF1C48DFC10044ED9D /* SportTypeTrainingPlanCollectionViewCell.m */,
+			);
+			name = SportTypeCell;
+			sourceTree = "<group>";
+		};
+		E6873BAC1C477CEF0072DC68 /* DateHeaderView */ = {
+			isa = PBXGroup;
+			children = (
+				E6873BAD1C477D2F0072DC68 /* LTDateHeaderView.h */,
+				E6873BAE1C477D2F0072DC68 /* LTDateHeaderView.m */,
+			);
+			name = DateHeaderView;
+			sourceTree = "<group>";
+		};
+		E6873BB01C47836D0072DC68 /* CollectionViewLayout */ = {
+			isa = PBXGroup;
+			children = (
+				E6873BB41C47A13F0072DC68 /* TrainingPlanCollectionViewLayout.h */,
+				E6873BB51C47A13F0072DC68 /* TrainingPlanCollectionViewLayout.m */,
+			);
+			name = CollectionViewLayout;
+			sourceTree = "<group>";
+		};
+		E6873BBA1C47B8060072DC68 /* TraininPlanTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				E627C6B91C4673FB0001D2B0 /* CollectionViewCell */,
+				E6873BB01C47836D0072DC68 /* CollectionViewLayout */,
+				E6873BAC1C477CEF0072DC68 /* DateHeaderView */,
+				E627C6B61C46720B0001D2B0 /* LTTrainingPlanView.h */,
+				E627C6B71C46720B0001D2B0 /* LTTrainingPlanView.m */,
+				E6873BB71C47B1580072DC68 /* TrainingPlanTableViewCell.h */,
+				E6873BB81C47B1580072DC68 /* TrainingPlanTableViewCell.m */,
+			);
+			name = TraininPlanTableViewCell;
+			sourceTree = "<group>";
+		};
+		E6873BBC1C47B8590072DC68 /* TrainingPlanTableViewHeader */ = {
+			isa = PBXGroup;
+			children = (
+				E6873BBE1C47B8980072DC68 /* TrainingPlanTableViewHeader.h */,
+				E6873BBF1C47B8980072DC68 /* TrainingPlanTableViewHeader.m */,
+			);
+			name = TrainingPlanTableViewHeader;
+			sourceTree = "<group>";
+		};
+		E6873BBD1C47B8620072DC68 /* TrainingPlanTableViewFooterCell */ = {
+			isa = PBXGroup;
+			children = (
+				E6873BC41C47CC820072DC68 /* TrainingPlanTotalFooterView */,
+				E6873BC11C47CB220072DC68 /* TrainingPlanFooterTableViewCell.h */,
+				E6873BC21C47CB220072DC68 /* TrainingPlanFooterTableViewCell.m */,
+			);
+			name = TrainingPlanTableViewFooterCell;
+			sourceTree = "<group>";
+		};
+		E6873BC41C47CC820072DC68 /* TrainingPlanTotalFooterView */ = {
+			isa = PBXGroup;
+			children = (
+				E62BC7B81C48DF780044ED9D /* Cells */,
+				E6873BC51C47D0CC0072DC68 /* TrainingPlanTotalFooterView.h */,
+				E6873BC61C47D0CC0072DC68 /* TrainingPlanTotalFooterView.m */,
+			);
+			name = TrainingPlanTotalFooterView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -110,6 +293,7 @@
 				TargetAttributes = {
 					E627C68A1C44CD000001D2B0 = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = P3T7NG5D3V;
 					};
 				};
 			};
@@ -136,9 +320,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E627C69E1C44CD000001D2B0 /* LaunchScreen.storyboard in Resources */,
+				E62BC7C71C4CEFE20044ED9D /* splash_iphone6.png in Resources */,
+				E62BC7C61C4CEFE20044ED9D /* splash_iphone5.png in Resources */,
+				E62BC7C81C4CEFE20044ED9D /* splash_iphone6+.png in Resources */,
+				E62BC7C51C4CEFE20044ED9D /* splash_iphone4.png in Resources */,
 				E627C69B1C44CD000001D2B0 /* Assets.xcassets in Resources */,
-				E627C6991C44CD000001D2B0 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -149,32 +335,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E627C6B81C46720B0001D2B0 /* LTTrainingPlanView.m in Sources */,
+				E627C6B01C464FEE0001D2B0 /* LTCalendarView.m in Sources */,
+				E627C6BC1C4674130001D2B0 /* AllTrainingPlanCollectionViewCell.m in Sources */,
+				E627C6AA1C44F68C0001D2B0 /* CalendarCollectionHeaderView.m in Sources */,
 				E627C6961C44CD000001D2B0 /* ViewController.m in Sources */,
+				E6873BC31C47CB220072DC68 /* TrainingPlanFooterTableViewCell.m in Sources */,
+				E6873BB61C47A13F0072DC68 /* TrainingPlanCollectionViewLayout.m in Sources */,
 				E627C6931C44CD000001D2B0 /* AppDelegate.m in Sources */,
+				E62BC7BD1C48DFB10044ED9D /* TotalTrainingPlanCollectionViewCell.m in Sources */,
+				E6873BC01C47B8980072DC68 /* TrainingPlanTableViewHeader.m in Sources */,
 				E627C6901C44CD000001D2B0 /* main.m in Sources */,
+				E6873BAF1C477D2F0072DC68 /* LTDateHeaderView.m in Sources */,
+				E62BC7C01C48DFC10044ED9D /* SportTypeTrainingPlanCollectionViewCell.m in Sources */,
+				E6873BC71C47D0CC0072DC68 /* TrainingPlanTotalFooterView.m in Sources */,
+				E627C6A71C44DF850001D2B0 /* CalendarCell.m in Sources */,
+				E6873BB91C47B1580072DC68 /* TrainingPlanTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		E627C6971C44CD000001D2B0 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E627C6981C44CD000001D2B0 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		E627C69C1C44CD000001D2B0 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E627C69D1C44CD000001D2B0 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		E627C6A01C44CD000001D2B0 /* Debug */ = {
@@ -261,10 +441,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Павел Разуваев (MDSVH9ZFZ4)";
 				INFOPLIST_FILE = LTCalendar/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ltst.LTCalendar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "1b2fbf98-00f5-4243-a7c8-54294caafb1f";
 			};
 			name = Debug;
 		};
@@ -272,10 +455,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Live Typing inc.";
 				INFOPLIST_FILE = LTCalendar/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ltst.LTCalendar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "0988df19-151f-47d3-ad30-448d22d9fb9d";
 			};
 			name = Release;
 		};
@@ -298,6 +484,7 @@
 				E627C6A41C44CD000001D2B0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
