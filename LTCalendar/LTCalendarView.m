@@ -14,17 +14,12 @@
 static NSString *calendarCellIdentifier = @"calendarCell";
 static NSString *calendarHeaderView = @"headerView";
 
+static CGFloat heightForHeader = 63;
+
 @interface LTCalendarView ()
 
-@property (nonatomic, strong) UICollectionView *CV;
 @property (nonatomic, strong) UICollectionViewFlowLayout *flowLayout;
-
-@property (nonatomic, strong) NSMutableArray *notTrainingDays;
-@property (nonatomic, strong) NSMutableArray *races;
-@property (nonatomic, strong) NSMutableArray *swim;
-@property (nonatomic, strong) NSMutableArray *run;
-
-@property (nonatomic, strong) NSMutableArray *competitionDays;
+@property (nonatomic) BOOL updating;
 
 @end
 
@@ -37,6 +32,9 @@ static NSString *calendarHeaderView = @"headerView";
         
         [self setBackgroundColor:[UIColor whiteColor]];
         
+        _updating = NO;
+        _numberOfSections = 12;
+        
         [self fillArrays];
         [self setupUI];
     }
@@ -45,32 +43,12 @@ static NSString *calendarHeaderView = @"headerView";
 
 #pragma mark LoadData
 - (void)fillArrays {
-    _notTrainingDays = [NSMutableArray new];
     
-    _swim = [NSMutableArray new];
-    for (int i = 0; i <= 12; i++) {
-        [_swim addObject:[self dateWithYear:2016 month:1 day:i]];
-    }
-    
-    _races = [NSMutableArray new];
-    for (int i = 14; i <= 17; i++) {
-        [_races addObject:[self dateWithYear:2016 month:1 day:i]];
-    }
-    
-    _run = [NSMutableArray new];
-    for (int i = 18; i <= 23; i++) {
-        [_run addObject:[self dateWithYear:2016 month:1 day:i]];
-    }
-    
-    _competitionDays = [NSMutableArray new];
-    [_competitionDays addObject:[self dateWithYear:2016 month:2 day:1]];
-    [_competitionDays addObject:[self dateWithYear:2016 month:1 day:22]];
 }
 
 #pragma mark setupUI
 - (void)setupUI {
     [self addSubview:self.CV];
-    [_CV scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:[self returnCurrentMonth]] atScrollPosition:UICollectionViewScrollPositionCenteredVertically animated:NO];
 }
 
 - (UICollectionView *)CV {
@@ -81,6 +59,7 @@ static NSString *calendarHeaderView = @"headerView";
         [_CV registerClass:[CalendarCell class] forCellWithReuseIdentifier:calendarCellIdentifier];
         [_CV registerClass:[CalendarCollectionHeaderView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:calendarHeaderView];
         [_CV setAlwaysBounceVertical:YES];
+        [_CV setScrollsToTop:YES];
         [_CV setBackgroundColor:[UIColor clearColor]];
     }
     return _CV;
@@ -97,11 +76,11 @@ static NSString *calendarHeaderView = @"headerView";
 
 #pragma mark CollectionView delegate
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    return 12;
+    return _numberOfSections;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 31 + [self returnStartIndexForMonth:section+1];
+    return 31 + [self returnStartIndexForMonth:section + [self returnStartMonth]];
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -109,7 +88,7 @@ static NSString *calendarHeaderView = @"headerView";
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
-    return CGSizeMake(self.frame.size.width, 60);
+    return CGSizeMake(self.frame.size.width, heightForHeader);
 }
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
@@ -117,8 +96,7 @@ static NSString *calendarHeaderView = @"headerView";
     
     if (kind == UICollectionElementKindSectionHeader) {
         CalendarCollectionHeaderView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:calendarHeaderView forIndexPath:indexPath];
-        [headerView setupMonth:indexPath.section+1];
-        [headerView setupDaysOfTheWeekSize:CGSizeMake(CGRectGetWidth(_CV.frame)/21, CGRectGetWidth(_CV.frame)/21)];
+        [headerView setupTextWithDate:[self returnDateByIndexPath:[NSIndexPath indexPathForItem:[self returnStartIndexForMonth:indexPath.section + [self returnStartMonth]] inSection:indexPath.section]]];
         reusableView = headerView;
     }
     return reusableView;
@@ -130,82 +108,28 @@ static NSString *calendarHeaderView = @"headerView";
         cell = [[CalendarCell alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(_CV.frame)/7, CGRectGetWidth(_CV.frame)/7)];
     }
     
-    if (indexPath.item < [self returnStartIndexForMonth:indexPath.section+1] || indexPath.item >= [self returnStartIndexForMonth:indexPath.section+1] + [self returnNumberOfDaysInMonth:indexPath.section+1]) {
+    if (indexPath.item < [self returnStartIndexForMonth:indexPath.section + [self returnStartMonth]] || indexPath.item >= [self returnStartIndexForMonth:indexPath.section + [self returnStartMonth]] + [self returnNumberOfDaysInMonth:indexPath.section + [self returnStartMonth]]) {
         [cell setupCellType:empty];
-        [cell setupCellWithDay:0 andNumberOfDays:[self returnNumberOfDaysInMonth:indexPath.section+1]];
+        [cell setupCellWithDay:0 andNumberOfDays:[self returnNumberOfDaysInMonth:indexPath.section + [self returnStartMonth]]];
     }else {
-        if ((indexPath.item == [self returnStartIndexForMonth:indexPath.section+1] + [self returnCurrentDay]) && indexPath.section == [self returnCurrentMonth]) {
+        [cell setupCellType:workdays];
+        
+        if (indexPath == [self returnIndexPathByTimeStamp:[NSNumber numberWithDouble:[NSDate date].timeIntervalSince1970]]) {
             [cell setupCellType:currentDay];
-        }else {
-            BOOL foundType = NO;
-            if (!foundType) {
-                for (NSDate *date in _races) {
-                    if ([indexPath isEqual:[self returnIndexPathByDate:date]]) {
-                        [cell setupCellType:race];
-                        foundType = YES;
-                        break;
-                    }
-                }
-            }
-            if (!foundType) {
-                for (NSDate *date in _swim) {
-                    if ([indexPath isEqual:[self returnIndexPathByDate:date]]) {
-                        [cell setupCellType:swim];
-                        foundType = YES;
-                        break;
-                    }
-                }
-            }
-            if (!foundType) {
-                for (NSDate *date in _run) {
-                    if ([indexPath isEqual:[self returnIndexPathByDate:date]]) {
-                        [cell setupCellType:run];
-                        foundType = YES;
-                        break;
-                    }
-                }
-            }
-            if (!foundType) {
-                [cell setupCellType:holiday];
-            }
         }
-        [cell setupCellWithDay:(indexPath.item+1) - [self returnStartIndexForMonth:indexPath.section+1] andNumberOfDays:[self returnNumberOfDaysInMonth:indexPath.section+1]];
-    }
-    
-    for (NSIndexPath *currentIndexPath in _notTrainingDays) {
-        if (currentIndexPath == indexPath) {
-            [cell cantTrain];
-            break;
-        }else {
-            [cell.dot removeFromSuperview];
+        
+        if ([self isWeekEnd:indexPath]) {
+            [cell setupCellType:holiday];
         }
-    }
-    
-    for (NSDate *date in _competitionDays) {
-        if ([indexPath isEqual:[self returnIndexPathByDate:date]]) {
-            [cell setupCompetition];
-            break;
-        }else {
-            [cell.competitionView removeFromSuperview];
-        }
+        
+        [cell setupCellWithDay:(indexPath.item+1) - [self returnStartIndexForMonth:indexPath.section + [self returnStartMonth]] andNumberOfDays:[self returnNumberOfDaysInMonth:indexPath.section + [self returnStartMonth]]];
     }
     
     return cell;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.item < [self returnStartIndexForMonth:indexPath.section+1] || indexPath.item >= [self returnStartIndexForMonth:indexPath.section+1] + [self returnNumberOfDaysInMonth:indexPath.section+1]) {
-        return;
-    }
-    CalendarCell *cell = (CalendarCell *)[collectionView cellForItemAtIndexPath:indexPath];
     
-    if ([_notTrainingDays containsObject:indexPath]) {
-        [_notTrainingDays removeObject:indexPath];
-        [cell.dot removeFromSuperview];
-    }else {
-        [_notTrainingDays addObject:indexPath];
-        [cell cantTrain];
-    }
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -231,24 +155,26 @@ static NSString *calendarHeaderView = @"headerView";
 - (NSInteger)returnStartIndexForMonth:(NSInteger)month {
     NSDateComponents *dateComponents = [[NSCalendar currentCalendar] components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay fromDate:[NSDate date]];
     dateComponents.month = month;
-    dateComponents.day = 0;
+    dateComponents.year = dateComponents.year;
+    dateComponents.day = 1;
     
     NSCalendar *gregorian = [NSCalendar currentCalendar];
     NSDate *builtDate =[gregorian dateFromComponents:dateComponents];
     
-    NSDateComponents *weekdayComponents = [gregorian components:NSCalendarUnitWeekday fromDate:builtDate];
+    NSDateComponents *weekdayComponents = [gregorian components:NSCalendarUnitWeekday fromDate:[NSDate zeroDateFromDate:builtDate]];
     NSInteger weekday = [weekdayComponents weekday];
-    return weekday - 1;
+    return [self returnCustomWeekdayByOriginal:weekday];
 }
 
 - (NSInteger)returnNumberOfDaysInMonth:(NSInteger)month {
     NSDateComponents *dateComponents = [[NSCalendar currentCalendar] components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay fromDate:[NSDate date]];
     dateComponents.month = month;
+    dateComponents.year = dateComponents.year;
     
     NSCalendar *gregorian = [NSCalendar currentCalendar];
     NSDate *builtDate =[gregorian dateFromComponents:dateComponents];
     
-    NSRange range = [gregorian rangeOfUnit:NSCalendarUnitDay inUnit:NSCalendarUnitMonth forDate:builtDate];
+    NSRange range = [gregorian rangeOfUnit:NSCalendarUnitDay inUnit:NSCalendarUnitMonth forDate:[NSDate zeroDateFromDate:builtDate]];
     NSUInteger numberOfDaysInMonth = range.length;
     
     return numberOfDaysInMonth;
@@ -261,45 +187,123 @@ static NSString *calendarHeaderView = @"headerView";
 
 - (NSInteger)returnCurrentMonth {
     NSDateComponents *dateComponents = [[NSCalendar currentCalendar] components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay fromDate:[NSDate date]];
-    return dateComponents.month-1;
+    return dateComponents.month;
 }
 
-- (NSIndexPath *)returnIndexPathByDate:(NSDate *)date {
+- (NSInteger)returnStartMonth {
+    NSDate *date = [NSDate date];
+    NSDateComponents *dateComponents = [[NSCalendar currentCalendar] components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay fromDate:date];
+    return dateComponents.month;
+}
+
+- (NSIndexPath *)returnIndexPathByTimeStamp:(NSNumber *)timeStamp {
     NSInteger section = 0;
     NSInteger item = 0;
     
+    NSDate *startDate = [NSDate date];
+    NSDateComponents *startDateComponents = [[NSCalendar currentCalendar] components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay fromDate:startDate];
+    NSInteger startYear = startDateComponents.year;
+    
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:timeStamp.doubleValue];
+    
     NSDateComponents *dateComponents = [[NSCalendar currentCalendar] components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay fromDate:date];
-    section = dateComponents.month - 1;
-    item = (dateComponents.day - 1) + [self returnStartIndexForMonth:section+1];
+    NSInteger year = dateComponents.year;
+    
+    NSInteger yearDiff = year - startYear;
+    
+    section = dateComponents.month - [self returnStartMonth] + 12*yearDiff;
+    item = (dateComponents.day - 1) + [self returnStartIndexForMonth:section + [self returnStartMonth]];
     
     NSIndexPath *indexPath = [NSIndexPath indexPathForItem:item inSection:section];
     
     return indexPath;
 }
 
-- (NSDate *)returnDateByIndexPath:(NSIndexPath *)indexPath {
-    NSDateComponents *dateComponents = [[NSCalendar currentCalendar] components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay fromDate:[NSDate date]];
-    dateComponents.month = indexPath.section + 1;
+- (NSNumber *)returnDateByIndexPath:(NSIndexPath *)indexPath {
+    NSDateComponents *dateComponents = [[NSCalendar currentCalendar] components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute fromDate:[NSDate date]];
+    dateComponents.month = indexPath.section + [self returnStartMonth];
+    dateComponents.year = dateComponents.year;
+    dateComponents.hour = 0;
+    dateComponents.minute = 0;
     dateComponents.day = (indexPath.item + 1) - [self returnStartIndexForMonth:dateComponents.month];
     
     NSCalendar *gregorian = [NSCalendar currentCalendar];
     NSDate *builtDate =[gregorian dateFromComponents:dateComponents];
-    return builtDate;
+    
+    NSNumber *timeStamp = [NSNumber numberFromDate:[NSDate zeroDateFromDate:builtDate]];
+    
+    return timeStamp;
+}
+
+- (NSInteger)returnCustomWeekdayByOriginal:(NSInteger)originalWeekDay {
+    switch (originalWeekDay) {
+        case 1:
+        {
+            return 6;
+        }
+        case 2:
+        {
+            return 0;
+        }
+        case 3:
+        {
+            return 1;
+        }
+        case 4:
+        {
+            return 2;
+        }
+        case 5:
+        {
+            return 3;
+        }
+        case 6:
+        {
+            return 4;
+        }
+        case 7:
+        {
+            return 5;
+        }
+        default:
+        {
+            return 0;
+        }
+    }
+}
+
+- (BOOL)isWeekEnd:(NSIndexPath *)indexPath {
+    NSNumber *currentDate = [self returnDateByIndexPath:indexPath];
+    NSDateComponents *dateComponents = [[NSCalendar currentCalendar] components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitWeekday fromDate:[NSDate dateWithTimeIntervalSince1970:currentDate.doubleValue]];
+    
+    NSInteger day = [self returnCustomWeekdayByOriginal:dateComponents.weekday];
+    
+    if (day == 5 || day == 6) {
+        return YES;
+    }else {
+        return NO;
+    }
+}
+
+- (void)scrollToCurrentMonth {
+    [_CV scrollToItemAtIndexPath:[self returnIndexPathByTimeStamp:[NSNumber numberWithDouble:[NSDate date].timeIntervalSince1970]] atScrollPosition:UICollectionViewScrollPositionCenteredVertically animated:NO];
+}
+
+#pragma mark - ScrollViewDelegate
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if (!_updating) {
+        if ((scrollView.contentOffset.y + 63*_numberOfSections) > scrollView.contentSize.height) {
+            _updating = YES;
+            _numberOfSections = _numberOfSections + 12;
+            [_CV reloadData];
+            _updating = NO;
+        }
+    }
 }
 
 #pragma mark Layout
 - (void)layoutSubviews {
     [_CV setFrame:CGRectMake(fmodf(self.frame.size.width, 7)/2, 0, self.frame.size.width - fmodf(self.frame.size.width, 7), self.frame.size.height)];
-}
-
-#pragma mark Others
-- (NSDate *)dateWithYear:(NSInteger)year month:(NSInteger)month day:(NSInteger)day {
-    NSCalendar *calendar = [NSCalendar currentCalendar];
-    NSDateComponents *components = [[NSDateComponents alloc] init];
-    [components setYear:year];
-    [components setMonth:month];
-    [components setDay:day];
-    return [calendar dateFromComponents:components];
 }
 
 @end

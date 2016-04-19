@@ -8,9 +8,6 @@
 
 #import "CalendarCell.h"
 
-static const CGFloat dotSize = 4;
-static const CGFloat borderWidth = 4;
-
 @interface CalendarCell ()
 
 @property (nonatomic, strong) UILabel *day;
@@ -43,29 +40,6 @@ static const CGFloat borderWidth = 4;
     return _day;
 }
 
-- (UIView *)dot {
-    if (!_dot) {
-        _dot = [[UIView alloc] initWithFrame:CGRectMake(self.frame.size.width/2 - dotSize/2, CGRectGetMaxY(_day.frame) + 3, dotSize, dotSize)];
-        [_dot.layer setCornerRadius:_dot.frame.size.width/2];
-        [_dot.layer setRasterizationScale:[UIScreen mainScreen].scale];        
-        [_dot.layer setShouldRasterize:YES];
-        [_dot setBackgroundColor:[UIColor blackColor]];
-    }
-    return _dot;
-}
-
-- (UIView *)competitionView {
-    if (!_competitionView) {
-        _competitionView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
-        [_competitionView setBackgroundColor:[UIColor clearColor]];
-        [_competitionView.layer setBorderWidth:borderWidth];
-        [_competitionView.layer setBorderColor:[UIColor blackColor].CGColor];
-        [_competitionView.layer setRasterizationScale:[UIScreen mainScreen].scale];
-        [_competitionView.layer setShouldRasterize:YES];
-    }
-    return _competitionView;
-}
-
 #pragma mark Setters
 - (void)setupCellWithDay:(NSInteger)day andNumberOfDays:(NSInteger)daysInMonth {
     if (day >= 1 && day <= daysInMonth) {
@@ -84,32 +58,13 @@ static const CGFloat borderWidth = 4;
     [self.contentView addSubview:self.competitionView];
 }
 
-- (void)cantTrain {
-    [self.contentView addSubview:self.dot];
-    if ([_day.textColor isEqual:[UIColor blackColor]]) {
-        [_dot setBackgroundColor:[UIColor blackColor]];
-    }else {
-        [_dot setBackgroundColor:[UIColor whiteColor]];
-    }
-}
-
 #pragma mark Helpers
 - (UIColor *)returnColorForType:(cellType)type {
     [_day setTextColor:[UIColor blackColor]];
     switch (type) {
-        case race:
+        case workdays:
         {
-            return [UIColor colorWithRed:255/255. green:244/255. blue:167/255. alpha:1.0];
-        }
-        case swim:
-        {
-            return [UIColor colorWithRed:123/255. green:213/255. blue:246/255. alpha:1.0];
-            break;
-        }
-        case run:
-        {
-            return [UIColor colorWithRed:255/255. green:203/255. blue:137/255. alpha:1.0];
-            break;
+            return [UIColor colorWithRed:245/255. green:245/255. blue:245/255. alpha:1.0];
         }
         case holiday:
         {

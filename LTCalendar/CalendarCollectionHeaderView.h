@@ -10,7 +10,6 @@
 
 @interface CalendarCollectionHeaderView : UICollectionReusableView
 
-- (void)setupMonth:(NSInteger)month;
-- (void)setupDaysOfTheWeekSize:(CGSize)size;
+- (void)setupTextWithDate:(NSNumber *)timestamp;
 
 @end

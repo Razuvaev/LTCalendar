@@ -7,6 +7,10 @@
 //
 
 #import "CalendarCollectionHeaderView.h"
+
+static const CGFloat monthLeftMargin = 12;
+static const CGFloat monthTopMargin = 10;
+
 @interface CalendarCollectionHeaderView ()
 
 @property (nonatomic, strong) UILabel *month;
@@ -15,6 +19,7 @@
 
 @implementation CalendarCollectionHeaderView
 
+#pragma mark - LifeCycle
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
@@ -25,14 +30,16 @@
     return self;
 }
 
-#pragma mark setupUI
+#pragma mark - SetupUI
 - (void)setupUI {
     [self addSubview:self.month];
     
     for (int i = 0; i < 7; i++) {
-        UILabel *currentDay = [[UILabel alloc] initWithFrame:CGRectMake(i * (self.frame.size.width/7), self.frame.size.height - 20, self.frame.size.width/7, 20)];
+        UILabel *currentDay = [[UILabel alloc] initWithFrame:CGRectMake(i * (self.frame.size.width/7), self.frame.size.height - 22.4, self.frame.size.width/7, 14)];
         [currentDay setTextAlignment:NSTextAlignmentCenter];
         [currentDay setText:[self returnDayOfTheWeek:i+1]];
+        [currentDay setFont:[UIFont systemFontOfSize:[UIFont systemFontSize]]];
+        [currentDay setTextColor:[UIColor blackColor]];
         [self addSubview:currentDay];
     }
 }
@@ -40,25 +47,17 @@
 - (UILabel *)month {
     if (!_month) {
         _month = [[UILabel alloc] init];
+        [_month setFont:[UIFont boldSystemFontOfSize:[UIFont systemFontSize]]];
         [_month setTextColor:[UIColor darkTextColor]];
     }
     return _month;
 }
 
-#pragma mark Setters
-- (void)setupMonth:(NSInteger)month {
-    [_month setText:[self returnMonth:month]];
+#pragma mark - Setters
+- (void)setupTextWithDate:(NSNumber *)timestamp {
+    NSDateComponents *dateComponents = [[NSCalendar currentCalendar] components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute fromDate:[NSDate dateWithTimeIntervalSince1970:timestamp.doubleValue]];
+    [_month setText:[NSString stringWithFormat:@"%@ %li", [self returnMonth:dateComponents.month], dateComponents.year]];
     [self layoutSubviews];
-}
-
-- (void)setupDaysOfTheWeekSize:(CGSize)size {
-    for (UILabel *label in self.subviews) {
-        if ([label isKindOfClass:[UILabel class]]) {
-            if (label != _month) {
-                [label setFont:[UIFont systemFontOfSize:size.height]];
-            }
-        }
-    }
 }
 
 #pragma mark Helpers
@@ -73,7 +72,21 @@
     NSDateFormatter *df = [NSDateFormatter new];
     [df setDateFormat:@"MMMM"];
     
-    return [df stringFromDate:builtDate];
+    NSString *month = [df stringFromDate:builtDate];
+    if ([[[NSLocale currentLocale] localeIdentifier] isEqualToString:@"ru_RU"]) {
+        if ([month isEqualToString:@"мая"]) {
+            month = @"май";
+        }
+        
+        NSString *lastChar = [month substringFromIndex:[month length] - 1];
+        if ([lastChar isEqualToString:@"я"]) {
+            month = [month stringByReplacingCharactersInRange:NSMakeRange(month.length - 1, 1) withString:@"ь"];
+        }
+        if ([lastChar isEqualToString:@"а"]) {
+            month = [month substringToIndex:[month length] - 1];
+        }
+    }
+    return [month capitalizedString];
 }
 
 - (NSString *)returnDayOfTheWeek:(NSInteger)number {
@@ -81,7 +94,7 @@
     dateComponents.day = number;
     
     NSCalendar *gregorian = [NSCalendar currentCalendar];
-
+    
     NSDate *builtDate =[gregorian dateFromComponents:dateComponents];
     
     NSDateFormatter *df = [NSDateFormatter new];
@@ -93,7 +106,7 @@
 #pragma mark Layout
 - (void)layoutSubviews {
     [_month sizeToFit];
-    [_month setFrame:CGRectMake(self.frame.size.width/2 - _month.frame.size.width/2, 10, _month.frame.size.width, _month.frame.size.height)];
+    [_month setFrame:CGRectMake(monthLeftMargin, monthTopMargin, _month.frame.size.width, _month.frame.size.height)];
 }
 
 @end

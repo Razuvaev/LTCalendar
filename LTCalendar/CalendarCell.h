@@ -9,23 +9,17 @@
 #import <UIKit/UIKit.h>
 
 typedef enum {
-    race = 0,
-    swim,
-    run,
-    competition,
+    workdays,
     holiday,
     currentDay,
-    empty,
+    empty
 }cellType;
 
 @interface CalendarCell : UICollectionViewCell
 
-@property (nonatomic, strong) UIView *dot;
 @property (nonatomic, strong) UIView *competitionView;
 
 - (void)setupCellWithDay:(NSInteger)day andNumberOfDays:(NSInteger)daysInMonth;
 - (void)setupCellType:(cellType)type;
-- (void)setupCompetition;
-- (void)cantTrain;
 
 @end
