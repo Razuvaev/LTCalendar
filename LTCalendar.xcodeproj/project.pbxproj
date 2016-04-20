@@ -16,6 +16,7 @@
 		E655D0E71CC6167F0016EC1E /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E655D0E61CC6167F0016EC1E /* MainViewController.m */; };
 		E655D0EC1CC61D610016EC1E /* LTNSDate.m in Sources */ = {isa = PBXBuildFile; fileRef = E655D0EB1CC61D610016EC1E /* LTNSDate.m */; };
 		E655D0F11CC61DDF0016EC1E /* LTNSNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = E655D0F01CC61DDF0016EC1E /* LTNSNumber.m */; };
+		E655D1341CC763FD0016EC1E /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = E655D1331CC763FD0016EC1E /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,7 @@
 		E655D0EB1CC61D610016EC1E /* LTNSDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTNSDate.m; sourceTree = "<group>"; };
 		E655D0EF1CC61DDF0016EC1E /* LTNSNumber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTNSNumber.h; sourceTree = "<group>"; };
 		E655D0F01CC61DDF0016EC1E /* LTNSNumber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTNSNumber.m; sourceTree = "<group>"; };
+		E655D1331CC763FD0016EC1E /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +55,7 @@
 		E627C6821C44CD000001D2B0 = {
 			isa = PBXGroup;
 			children = (
+				E655D1331CC763FD0016EC1E /* README.md */,
 				E627C68D1C44CD000001D2B0 /* LTCalendar */,
 				E627C68C1C44CD000001D2B0 /* Products */,
 			);
@@ -220,6 +223,7 @@
 				E627C6AA1C44F68C0001D2B0 /* CalendarCollectionHeaderView.m in Sources */,
 				E627C6931C44CD000001D2B0 /* AppDelegate.m in Sources */,
 				E627C6901C44CD000001D2B0 /* main.m in Sources */,
+				E655D1341CC763FD0016EC1E /* README.md in Sources */,
 				E627C6A71C44DF850001D2B0 /* CalendarCell.m in Sources */,
 				E655D0EC1CC61D610016EC1E /* LTNSDate.m in Sources */,
 			);
