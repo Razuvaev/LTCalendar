@@ -14,17 +14,29 @@
 static NSString *calendarCellIdentifier = @"calendarCell";
 static NSString *calendarHeaderView = @"headerView";
 
-static CGFloat heightForHeader = 63;
+static CGFloat const heightForHeader = 63;
+
+static NSInteger const numberOfMonthsInYear = 12;
+static NSInteger const maximumDaysInMonth = 31;
+static NSInteger const numberOfDaysInWeek = 7;
 
 @interface LTCalendarView ()
 
+/**
+CollectionView layout
+*/
 @property (nonatomic, strong) UICollectionViewFlowLayout *flowLayout;
+
+/**
+Bool property which shows if collectionView is updating right now
+*/
 @property (nonatomic) BOOL updating;
 
 @end
 
 @implementation LTCalendarView
 
+#pragma mark - Lifecycle
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
@@ -41,12 +53,12 @@ static CGFloat heightForHeader = 63;
     return self;
 }
 
-#pragma mark LoadData
+#pragma mark - LoadData
 - (void)fillArrays {
     
 }
 
-#pragma mark setupUI
+#pragma mark - setupUI
 - (void)setupUI {
     [self addSubview:self.CV];
 }
@@ -74,17 +86,17 @@ static CGFloat heightForHeader = 63;
     return _flowLayout;
 }
 
-#pragma mark CollectionView delegate
+#pragma mark - CollectionView delegate
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     return _numberOfSections;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 31 + [self returnStartIndexForMonth:section + [self returnStartMonth]];
+    return maximumDaysInMonth + [self returnStartIndexForMonth:section + [self returnStartMonth]];
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return CGSizeMake(CGRectGetWidth(_CV.frame)/7, CGRectGetWidth(_CV.frame)/7);
+    return CGSizeMake(CGRectGetWidth(_CV.frame)/numberOfDaysInWeek, CGRectGetWidth(_CV.frame)/numberOfDaysInWeek);
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
@@ -105,7 +117,7 @@ static CGFloat heightForHeader = 63;
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     CalendarCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:calendarCellIdentifier forIndexPath:indexPath];
     if (!cell) {
-        cell = [[CalendarCell alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(_CV.frame)/7, CGRectGetWidth(_CV.frame)/7)];
+        cell = [[CalendarCell alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(_CV.frame)/numberOfDaysInWeek, CGRectGetWidth(_CV.frame)/numberOfDaysInWeek)];
     }
     
     if (indexPath.item < [self returnStartIndexForMonth:indexPath.section + [self returnStartMonth]] || indexPath.item >= [self returnStartIndexForMonth:indexPath.section + [self returnStartMonth]] + [self returnNumberOfDaysInMonth:indexPath.section + [self returnStartMonth]]) {
@@ -146,12 +158,12 @@ static CGFloat heightForHeader = 63;
     }];
 }
 
-#pragma mark Actions
+#pragma mark - Actions
 - (void)dateChanged {
     [_CV reloadData];
 }
 
-#pragma mark Helpers
+#pragma mark - Helpers
 - (NSInteger)returnStartIndexForMonth:(NSInteger)month {
     NSDateComponents *dateComponents = [[NSCalendar currentCalendar] components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay fromDate:[NSDate date]];
     dateComponents.month = month;
@@ -211,7 +223,7 @@ static CGFloat heightForHeader = 63;
     
     NSInteger yearDiff = year - startYear;
     
-    section = dateComponents.month - [self returnStartMonth] + 12*yearDiff;
+    section = dateComponents.month - [self returnStartMonth] + numberOfMonthsInYear*yearDiff;
     item = (dateComponents.day - 1) + [self returnStartIndexForMonth:section + [self returnStartMonth]];
     
     NSIndexPath *indexPath = [NSIndexPath indexPathForItem:item inSection:section];
@@ -239,35 +251,11 @@ static CGFloat heightForHeader = 63;
     switch (originalWeekDay) {
         case 1:
         {
-            return 6;
-        }
-        case 2:
-        {
-            return 0;
-        }
-        case 3:
-        {
-            return 1;
-        }
-        case 4:
-        {
-            return 2;
-        }
-        case 5:
-        {
-            return 3;
-        }
-        case 6:
-        {
-            return 4;
-        }
-        case 7:
-        {
-            return 5;
+            return originalWeekDay + 5;
         }
         default:
         {
-            return 0;
+            return originalWeekDay - 2;
         }
     }
 }
@@ -292,18 +280,20 @@ static CGFloat heightForHeader = 63;
 #pragma mark - ScrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     if (!_updating) {
-        if ((scrollView.contentOffset.y + 63*_numberOfSections) > scrollView.contentSize.height) {
+        if ((scrollView.contentOffset.y + heightForHeader*_numberOfSections) > scrollView.contentSize.height) {
             _updating = YES;
-            _numberOfSections = _numberOfSections + 12;
+            _numberOfSections = _numberOfSections + numberOfMonthsInYear;
             [_CV reloadData];
             _updating = NO;
         }
     }
 }
 
-#pragma mark Layout
+#pragma mark - Layout
 - (void)layoutSubviews {
+    [super layoutSubviews];
     [_CV setFrame:CGRectMake(fmodf(self.frame.size.width, 7)/2, 0, self.frame.size.width - fmodf(self.frame.size.width, 7), self.frame.size.height)];
+    [_flowLayout invalidateLayout];
 }
 
 @end

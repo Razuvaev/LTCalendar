@@ -8,18 +8,24 @@
 
 #import <UIKit/UIKit.h>
 
-typedef enum {
+typedef NS_ENUM(NSInteger, cellType) {
     workdays,
     holiday,
     currentDay,
     empty
-}cellType;
+};
 
 @interface CalendarCell : UICollectionViewCell
 
-@property (nonatomic, strong) UIView *competitionView;
-
+#pragma mark - Setters
+/**
+Setup cell with concrete day and days in month
+*/
 - (void)setupCellWithDay:(NSInteger)day andNumberOfDays:(NSInteger)daysInMonth;
+
+/**
+Setup cell with concrete type
+*/
 - (void)setupCellType:(cellType)type;
 
 @end

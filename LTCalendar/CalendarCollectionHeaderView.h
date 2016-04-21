@@ -10,6 +10,9 @@
 
 @interface CalendarCollectionHeaderView : UICollectionReusableView
 
+/**
+Set header's date
+*/
 - (void)setupTextWithDate:(NSNumber *)timestamp;
 
 @end

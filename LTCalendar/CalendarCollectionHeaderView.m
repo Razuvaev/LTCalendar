@@ -24,7 +24,7 @@ static const CGFloat monthTopMargin = 10;
     self = [super initWithFrame:frame];
     if (self) {
         [self setBackgroundColor:[UIColor whiteColor]];
-        
+
         [self setupUI];
     }
     return self;
@@ -60,7 +60,7 @@ static const CGFloat monthTopMargin = 10;
     [self layoutSubviews];
 }
 
-#pragma mark Helpers
+#pragma mark - Helpers
 - (NSString *)returnMonth:(NSInteger)number {
     NSDateComponents *dateComponents = [[NSCalendar currentCalendar] components:NSCalendarUnitMonth | NSCalendarUnitYear fromDate:[NSDate date]];
     dateComponents.month = number;
@@ -103,10 +103,18 @@ static const CGFloat monthTopMargin = 10;
     return [df stringFromDate:builtDate];
 }
 
-#pragma mark Layout
+#pragma mark - Layout
 - (void)layoutSubviews {
+    [super layoutSubviews];
     [_month sizeToFit];
     [_month setFrame:CGRectMake(monthLeftMargin, monthTopMargin, _month.frame.size.width, _month.frame.size.height)];
+    
+    for (int i = 1; i < self.subviews.count; i++) {
+        id view = [self.subviews objectAtIndex:i];
+        if ([view isKindOfClass:[UILabel class]]) {
+            [view setFrame:CGRectMake((i-1) * (self.frame.size.width/7), self.frame.size.height - 22.4, self.frame.size.width/7, 14)];
+        }
+    }
 }
 
 @end

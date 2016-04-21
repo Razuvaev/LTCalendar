@@ -72,14 +72,13 @@
 		E627C68D1C44CD000001D2B0 /* LTCalendar */ = {
 			isa = PBXGroup;
 			children = (
-				E655D0E81CC61D3A0016EC1E /* Helpers */,
-				E627C6B11C4651590001D2B0 /* LTCalendarView */,
 				E627C6911C44CD000001D2B0 /* AppDelegate.h */,
 				E627C6921C44CD000001D2B0 /* AppDelegate.m */,
 				E627C69A1C44CD000001D2B0 /* Assets.xcassets */,
+				E655D0E81CC61D3A0016EC1E /* Helpers */,
+				E627C6B11C4651590001D2B0 /* LTCalendarView */,
 				E627C68E1C44CD000001D2B0 /* Supporting Files */,
-				E655D0E51CC6167F0016EC1E /* MainViewController.h */,
-				E655D0E61CC6167F0016EC1E /* MainViewController.m */,
+				E655D1551CC891050016EC1E /* ViewControllers */,
 			);
 			path = LTCalendar;
 			sourceTree = "<group>";
@@ -147,6 +146,23 @@
 				E655D0F01CC61DDF0016EC1E /* LTNSNumber.m */,
 			);
 			name = LTNSNumber;
+			sourceTree = "<group>";
+		};
+		E655D1551CC891050016EC1E /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				E655D1561CC891190016EC1E /* MainViewController */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		E655D1561CC891190016EC1E /* MainViewController */ = {
+			isa = PBXGroup;
+			children = (
+				E655D0E51CC6167F0016EC1E /* MainViewController.h */,
+				E655D0E61CC6167F0016EC1E /* MainViewController.m */,
+			);
+			name = MainViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

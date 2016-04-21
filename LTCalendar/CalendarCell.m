@@ -16,6 +16,7 @@
 
 @implementation CalendarCell
 
+#pragma mark - Lifecycle
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
@@ -26,7 +27,7 @@
     return self;
 }
 
-#pragma mark setupUI
+#pragma mark - setupUI
 - (void)setupUI {
     [self.contentView addSubview:self.day];
 }
@@ -40,7 +41,7 @@
     return _day;
 }
 
-#pragma mark Setters
+#pragma mark - Setters
 - (void)setupCellWithDay:(NSInteger)day andNumberOfDays:(NSInteger)daysInMonth {
     if (day >= 1 && day <= daysInMonth) {
         [_day setText:[NSString stringWithFormat:@"%li", (long)day]];
@@ -54,11 +55,7 @@
     [self setBackgroundColor:[self returnColorForType:type]];
 }
 
-- (void)setupCompetition {
-    [self.contentView addSubview:self.competitionView];
-}
-
-#pragma mark Helpers
+#pragma mark - Helpers
 - (UIColor *)returnColorForType:(cellType)type {
     [_day setTextColor:[UIColor blackColor]];
     switch (type) {

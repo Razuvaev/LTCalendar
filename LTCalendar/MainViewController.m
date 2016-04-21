@@ -41,4 +41,10 @@
     return _calendarView;
 }
 
+#pragma mark - Layout
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    [_calendarView setFrame:[UIScreen mainScreen].bounds];
+}
+
 @end
