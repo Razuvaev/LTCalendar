@@ -248,15 +248,10 @@ Bool property which shows if collectionView is updating right now
 }
 
 - (NSInteger)returnCustomWeekdayByOriginal:(NSInteger)originalWeekDay {
-    switch (originalWeekDay) {
-        case 1:
-        {
-            return originalWeekDay + 5;
-        }
-        default:
-        {
-            return originalWeekDay - 2;
-        }
+    if (originalWeekDay == 1) {
+        return originalWeekDay + 5;
+    }else {
+        return originalWeekDay - 2;
     }
 }
 
