@@ -35,7 +35,7 @@
 - (UILabel *)day {
     if (!_day) {
         _day = [[UILabel alloc] init];
-        [_day setFont:[UIFont systemFontOfSize:self.frame.size.height/3]];
+        [_day setFont:[UIFont systemFontOfSize:[UIFont systemFontSize]]];
         [_day setTextColor:[UIColor blackColor]];
     }
     return _day;
