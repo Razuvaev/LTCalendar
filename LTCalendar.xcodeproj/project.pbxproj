@@ -17,6 +17,7 @@
 		E655D0EC1CC61D610016EC1E /* LTNSDate.m in Sources */ = {isa = PBXBuildFile; fileRef = E655D0EB1CC61D610016EC1E /* LTNSDate.m */; };
 		E655D0F11CC61DDF0016EC1E /* LTNSNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = E655D0F01CC61DDF0016EC1E /* LTNSNumber.m */; };
 		E655D1341CC763FD0016EC1E /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = E655D1331CC763FD0016EC1E /* README.md */; };
+		E66C925E1CFC9C5C005E37E0 /* LTNSString.m in Sources */ = {isa = PBXBuildFile; fileRef = E66C925D1CFC9C5C005E37E0 /* LTNSString.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,9 @@
 		E655D0EF1CC61DDF0016EC1E /* LTNSNumber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTNSNumber.h; sourceTree = "<group>"; };
 		E655D0F01CC61DDF0016EC1E /* LTNSNumber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTNSNumber.m; sourceTree = "<group>"; };
 		E655D1331CC763FD0016EC1E /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		E66C925C1CFC9C5C005E37E0 /* LTNSString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTNSString.h; sourceTree = "<group>"; };
+		E66C925D1CFC9C5C005E37E0 /* LTNSString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTNSString.m; sourceTree = "<group>"; };
+		E66C925F1CFC9D8B005E37E0 /* LTCalendarPrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTCalendarPrefixHeader.pch; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +92,7 @@
 			children = (
 				E627C69F1C44CD000001D2B0 /* Info.plist */,
 				E627C68F1C44CD000001D2B0 /* main.m */,
+				E66C925F1CFC9D8B005E37E0 /* LTCalendarPrefixHeader.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -124,6 +129,7 @@
 		E655D0E81CC61D3A0016EC1E /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				E66C925B1CFC9C45005E37E0 /* LTNSString */,
 				E655D0EE1CC61DCD0016EC1E /* LTNSNumber */,
 				E655D0ED1CC61DBB0016EC1E /* LTNSDate */,
 			);
@@ -163,6 +169,15 @@
 				E655D0E61CC6167F0016EC1E /* MainViewController.m */,
 			);
 			name = MainViewController;
+			sourceTree = "<group>";
+		};
+		E66C925B1CFC9C45005E37E0 /* LTNSString */ = {
+			isa = PBXGroup;
+			children = (
+				E66C925C1CFC9C5C005E37E0 /* LTNSString.h */,
+				E66C925D1CFC9C5C005E37E0 /* LTNSString.m */,
+			);
+			name = LTNSString;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -240,6 +255,7 @@
 				E627C6931C44CD000001D2B0 /* AppDelegate.m in Sources */,
 				E627C6901C44CD000001D2B0 /* main.m in Sources */,
 				E655D1341CC763FD0016EC1E /* README.md in Sources */,
+				E66C925E1CFC9C5C005E37E0 /* LTNSString.m in Sources */,
 				E627C6A71C44DF850001D2B0 /* CalendarCell.m in Sources */,
 				E655D0EC1CC61D610016EC1E /* LTNSDate.m in Sources */,
 			);
@@ -334,11 +350,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GCC_PREFIX_HEADER = LTCalendar/LTCalendarPrefixHeader.pch;
 				INFOPLIST_FILE = LTCalendar/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ltst.LTCalendar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -348,11 +366,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GCC_PREFIX_HEADER = LTCalendar/LTCalendarPrefixHeader.pch;
 				INFOPLIST_FILE = LTCalendar/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ltst.LTCalendar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

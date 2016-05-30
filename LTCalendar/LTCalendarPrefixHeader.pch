@@ -1,0 +1,16 @@
+//
+//  LTCalendarPrefixHeader.pch
+//  LTCalendar
+//
+//  Created by Pavel Razuvaev on 30/05/16.
+//  Copyright © 2016 Pavel Razuvaev. All rights reserved.
+//
+
+#ifndef LTCalendarPrefixHeader_pch
+#define LTCalendarPrefixHeader_pch
+
+#import "LTNSString.h"
+#import "LTNSDate.h"
+#import "LTNSNumber.h"
+
+#endif /* LTCalendarPrefixHeader_pch */

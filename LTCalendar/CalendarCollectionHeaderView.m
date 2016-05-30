@@ -8,8 +8,13 @@
 
 #import "CalendarCollectionHeaderView.h"
 
+static const CGFloat daysInWeek = 7;
+
 static const CGFloat monthLeftMargin = 12;
 static const CGFloat monthTopMargin = 10;
+
+static const CGFloat dayBottomMargin = 22.4;
+static const CGFloat dayLabelHeight = 14;
 
 @interface CalendarCollectionHeaderView ()
 
@@ -34,10 +39,10 @@ static const CGFloat monthTopMargin = 10;
 - (void)setupUI {
     [self addSubview:self.month];
     
-    for (int i = 0; i < 7; i++) {
-        UILabel *currentDay = [[UILabel alloc] initWithFrame:CGRectMake(i * (self.frame.size.width/7), self.frame.size.height - 22.4, self.frame.size.width/7, 14)];
+    for (int i = 0; i < daysInWeek; i++) {
+        UILabel *currentDay = [[UILabel alloc] initWithFrame:CGRectMake(i * (self.frame.size.width/daysInWeek), self.frame.size.height - dayBottomMargin, self.frame.size.width/daysInWeek, dayLabelHeight)];
         [currentDay setTextAlignment:NSTextAlignmentCenter];
-        [currentDay setText:[self returnDayOfTheWeek:i+1]];
+        [currentDay setText:[NSString returnDayOfTheWeek:i+1]];
         [currentDay setFont:[UIFont systemFontOfSize:[UIFont systemFontSize]]];
         [currentDay setTextColor:[UIColor blackColor]];
         [self addSubview:currentDay];
@@ -56,51 +61,8 @@ static const CGFloat monthTopMargin = 10;
 #pragma mark - Setters
 - (void)setupTextWithDate:(NSNumber *)timestamp {
     NSDateComponents *dateComponents = [[NSCalendar currentCalendar] components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute fromDate:[NSDate dateWithTimeIntervalSince1970:timestamp.doubleValue]];
-    [_month setText:[NSString stringWithFormat:@"%@ %li", [self returnMonth:dateComponents.month], dateComponents.year]];
+    [_month setText:[NSString stringWithFormat:@"%@ %li", [NSString returnMonth:dateComponents.month], dateComponents.year]];
     [self layoutSubviews];
-}
-
-#pragma mark - Helpers
-- (NSString *)returnMonth:(NSInteger)number {
-    NSDateComponents *dateComponents = [[NSCalendar currentCalendar] components:NSCalendarUnitMonth | NSCalendarUnitYear fromDate:[NSDate date]];
-    dateComponents.month = number;
-    
-    NSCalendar *gregorian = [NSCalendar currentCalendar];
-    
-    NSDate *builtDate =[gregorian dateFromComponents:dateComponents];
-    
-    NSDateFormatter *df = [NSDateFormatter new];
-    [df setDateFormat:@"MMMM"];
-    
-    NSString *month = [df stringFromDate:builtDate];
-    if ([[[NSLocale currentLocale] localeIdentifier] isEqualToString:@"ru_RU"]) {
-        if ([month isEqualToString:@"мая"]) {
-            month = @"май";
-        }
-        
-        NSString *lastChar = [month substringFromIndex:[month length] - 1];
-        if ([lastChar isEqualToString:@"я"]) {
-            month = [month stringByReplacingCharactersInRange:NSMakeRange(month.length - 1, 1) withString:@"ь"];
-        }
-        if ([lastChar isEqualToString:@"а"]) {
-            month = [month substringToIndex:[month length] - 1];
-        }
-    }
-    return [month capitalizedString];
-}
-
-- (NSString *)returnDayOfTheWeek:(NSInteger)number {
-    NSDateComponents *dateComponents = [[NSCalendar currentCalendar] components:NSCalendarUnitDay fromDate:[NSDate date]];
-    dateComponents.day = number;
-    
-    NSCalendar *gregorian = [NSCalendar currentCalendar];
-    
-    NSDate *builtDate =[gregorian dateFromComponents:dateComponents];
-    
-    NSDateFormatter *df = [NSDateFormatter new];
-    [df setDateFormat:@"E"];
-    
-    return [df stringFromDate:builtDate];
 }
 
 #pragma mark - Layout
@@ -112,7 +74,7 @@ static const CGFloat monthTopMargin = 10;
     for (int i = 1; i < self.subviews.count; i++) {
         id view = [self.subviews objectAtIndex:i];
         if ([view isKindOfClass:[UILabel class]]) {
-            [view setFrame:CGRectMake((i-1) * (self.frame.size.width/7), self.frame.size.height - 22.4, self.frame.size.width/7, 14)];
+            [view setFrame:CGRectMake((i-1) * (self.frame.size.width/7), self.frame.size.height - dayBottomMargin, self.frame.size.width/daysInWeek, dayLabelHeight)];
         }
     }
 }
