@@ -45,7 +45,7 @@ Bool property which shows if collectionView is updating right now
         [self setBackgroundColor:[UIColor whiteColor]];
         
         _updating = NO;
-        _numberOfSections = 12;
+        _numberOfSections = numberOfMonthsInYear;
         
         [self fillArrays];
         [self setupUI];
@@ -65,7 +65,7 @@ Bool property which shows if collectionView is updating right now
 
 - (UICollectionView *)CV {
     if (!_CV) {
-        _CV = [[UICollectionView alloc] initWithFrame:CGRectMake(fmodf(self.frame.size.width, numberOfDaysInWeek)/2, 0, self.frame.size.width - fmodf(self.frame.size.width, numberOfDaysInWeek), self.frame.size.height) collectionViewLayout:self.flowLayout];
+        _CV = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:self.flowLayout];
         [_CV setDelegate:self];
         [_CV setDataSource:self];
         [_CV registerClass:[CalendarCell class] forCellWithReuseIdentifier:calendarCellIdentifier];
